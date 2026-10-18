@@ -1,0 +1,22 @@
+# 加载数据
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# 1. 准备数据
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# 2. 划分训练集和测试集（70%学习，30%考试）
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# 3. 建立模型（决策树）
+model = DecisionTreeClassifier(random_state=42)
+
+# 4. 训练与预测
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+# 5. 查看准确率
+print("准确率:", accuracy_score(y_test, y_pred))
